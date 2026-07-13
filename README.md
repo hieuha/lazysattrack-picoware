@@ -1,5 +1,11 @@
 # LazySatTrack for Picoware
 
+![Platform: PicoCalc / RP2350](https://img.shields.io/badge/platform-PicoCalc%20%2F%20RP2350-2ea44f)
+![MicroPython](https://img.shields.io/badge/MicroPython-1.29-blue)
+![Picoware app](https://img.shields.io/badge/Picoware-app-orange)
+![SGP4](https://img.shields.io/badge/orbital%20model-SGP4%20(near--Earth)-lightgrey)
+![Offline](https://img.shields.io/badge/offline-yes-informational)
+
 Offline SGP4 satellite pass tracker, ported to the **Picoware** MicroPython app
 framework (start/run/stop + Draw/Input/Vector). Near-Earth (LEO) only.
 
