@@ -1,0 +1,13 @@
+# LazySatTrack ground station -- SAMPLE.
+# Copy to /sd/station.txt on the PicoCalc SD card and put in YOUR own location.
+# Decimal degrees. Latitude: North +, South -.  Longitude: East +, West -.
+# ALT in kilometres (20 m -> 0.02). TZ = hours offset from UTC (Vietnam = 7).
+# Lines you omit fall back to the built-in defaults.
+
+LAT 21.0278
+LON 105.8342
+ALT 0.01
+TZ  7
+
+# Alternatively, one positional line also works:  lat lon alt tz
+#   21.0278 105.8342 0.01 7
