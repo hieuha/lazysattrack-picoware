@@ -782,7 +782,7 @@ def _load_tles():
 
 # ============================ DRAWING ====================================
 CX = 78
-CY = 150
+CY = 124             # polar-plot centre; sits just under the header (was lower, left a top gap)
 PR = 70
 
 
@@ -847,15 +847,15 @@ def _draw_track(vm):
     age = int((_JD0 - sat.jdepoch) + (f - sat.jdepochF))
     _T(d, 280, y0 + 3, "%dd" % age, _col["red"] if age > 14 else _col["dim"])
 
-    # polar plot
+    # polar plot (brighter grid so the rings and compass letters read clearly)
     for e in (0, 30, 60):
-        _CI(d, CX, CY, PR * (1 - e / 90.0), _col["dim"])
-    _LN(d, CX - PR, CY, CX + PR, CY, _col["dim"])
-    _LN(d, CX, CY - PR, CX, CY + PR, _col["dim"])
-    _T(d, CX - 3, CY - PR - 10, "N", _col["dim"])
-    _T(d, CX - 3, CY + PR + 2, "S", _col["dim"])
-    _T(d, CX + PR + 3, CY - 4, "E", _col["dim"])
-    _T(d, CX - PR - 9, CY - 4, "W", _col["dim"])
+        _CI(d, CX, CY, PR * (1 - e / 90.0), _col["grid"])
+    _LN(d, CX - PR, CY, CX + PR, CY, _col["grid"])
+    _LN(d, CX, CY - PR, CX, CY + PR, _col["grid"])
+    _T(d, CX - 3, CY - PR - 10, "N", _col["grid"])
+    _T(d, CX - 3, CY + PR + 2, "S", _col["grid"])
+    _T(d, CX + PR + 3, CY - 4, "E", _col["grid"])
+    _T(d, CX - PR - 9, CY - 4, "W", _col["grid"])
     if _arc:
         for i in range(1, len(_arc)):
             _LN(d, _arc[i - 1][0], _arc[i - 1][1], _arc[i][0], _arc[i][1], _col["amber"])
@@ -1040,7 +1040,7 @@ def start(view_manager):
         return ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3)
     _col = {"bg": C(0, 0, 0), "dim": C(120, 90, 20), "red": C(255, 60, 50),
             "green": C(0, 255, 120), "amber": C(255, 176, 0), "cyan": C(90, 210, 255),
-            "white": C(230, 230, 200)}
+            "white": C(230, 230, 200), "grid": C(175, 170, 130)}
 
     _obs = _observer_ecef(LAT, LON, ALT)
     _sats = _load_tles()
