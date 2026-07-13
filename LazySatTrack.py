@@ -874,7 +874,7 @@ def _draw_track(vm):
 
     def row(lbl, val, c):
         nonlocal ty
-        _T(d, tx, ty, lbl, _col["dim"])
+        _T(d, tx, ty, lbl, _col["grid"])
         _T(d, tx + 60, ty, val, c)
         ty += step
     if live:
@@ -899,7 +899,7 @@ def _draw_track(vm):
             _T(d, tx, ty + step, "T-" + _cd((nxt[1] - f) * 86400), _col["cyan"])
 
     # selected-pass peak label + elevation-vs-time chart (fills the free lower-right)
-    yb = CY + PR + 8
+    yb = CY + PR + 16                  # extra gap so the "S" compass label clears this line
     if _passes and _sel < len(_passes):
         sp = _passes[_sel]
         pky = (y0 + 3 + ch + 4) + 8 * (ch + 2) + 2
@@ -931,7 +931,7 @@ def _draw_track(vm):
 
     # pass list
     _LN(d, 0, yb, 319, yb, _col["dim"])
-    _T(d, 4, yb + 3, "NEXT PASSES  L=find C=calc", _col["dim"])
+    _T(d, 4, yb + 3, "NEXT PASSES  L=find C=calc", _col["grid"])
     yy = yb + 3 + ch + 2
     if not _passes:
         _T(d, 6, yy, "none >%d deg in %dh" % (int(MIN_PEAK), HORIZON_H), _col["red"])
