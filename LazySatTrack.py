@@ -825,6 +825,12 @@ def _CI(d, x, y, r, c):
     d.circle(Vector(int(x), int(y)), int(r), c)
 
 
+def _degc(d, x, y, c):
+    # Degree symbol drawn as a tiny ring -- the PicoCalc font has no '°' glyph
+    # (Picoware's Weather app strips it), so the unit is rendered with a primitive.
+    d.circle(Vector(int(x), int(y)), 1, c)
+
+
 def _draw_track(vm):
     global _last_sec
     d = vm.draw
@@ -903,7 +909,12 @@ def _draw_track(vm):
     if _passes and _sel < len(_passes):
         sp = _passes[_sel]
         pky = (y0 + 3 + ch + 4) + 8 * (ch + 2) + 2
-        _T(d, tx, pky, "PEAK %2.0fd @%s" % (sp["maxel"], _hm(sp["peak"], TZ)), _col["amber"])
+        cw = _fs.x if _fs else 8
+        phead = "PEAK %2.0f" % sp["maxel"]
+        _T(d, tx, pky, phead, _col["amber"])
+        pdx = tx + len(phead) * cw
+        _degc(d, pdx + 1, pky + 2, _col["amber"])
+        _T(d, pdx + 5, pky, "@%s" % _hm(sp["peak"], TZ), _col["amber"])
         bx = tx
         bw = 140
         bty = pky + ch + 2                 # chart top
@@ -931,7 +942,7 @@ def _draw_track(vm):
 
     # pass list
     _LN(d, 0, yb, 319, yb, _col["dim"])
-    _T(d, 4, yb + 3, "NEXT PASSES  L=find C=calc", _col["grid"])
+    _T(d, 4, yb + 3, "^v=pass  <>=sat  L=find  C=calc", _col["grid"])
     yy = yb + 3 + ch + 2
     if not _passes:
         _T(d, 6, yy, "none >%d deg in %dh" % (int(MIN_PEAK), HORIZON_H), _col["red"])
@@ -940,9 +951,12 @@ def _draw_track(vm):
             c = _col["amber"] if i == _sel else _col["white"]
             if i == _sel:
                 _FR(d, 0, yy - 1, 3, ch, _col["amber"])
-            _T(d, 6, yy, "%d %s %2.0fd %s>%s" % (
-                i + 1, _datestr(p["aos"], TZ), p["maxel"],
-                _comp(p["aosaz"]), _comp(p["losaz"])), c)
+            cw = _fs.x if _fs else 8
+            head = "%d %s %2.0f" % (i + 1, _datestr(p["aos"], TZ), p["maxel"])
+            _T(d, 6, yy, head, c)
+            hdx = 6 + len(head) * cw
+            _degc(d, hdx + 1, yy + 2, c)
+            _T(d, hdx + 5, yy, " %s>%s" % (_comp(p["aosaz"]), _comp(p["losaz"])), c)
             yy += ch + 1
     if _msg:
         _T(d, 4, 320 - ch - 1, _msg[:40], _col["dim"])
