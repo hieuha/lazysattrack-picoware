@@ -3,6 +3,14 @@
 Offline SGP4 satellite pass tracker, ported to the **Picoware** MicroPython app
 framework (start/run/stop + Draw/Input/Vector). Near-Earth (LEO) only.
 
+<p align="center">
+  <img src="photo/photo_2026-07-14_00-56-18.jpg" alt="LazySatTrack tracking the ISS on a ClockworkPi PicoCalc" width="420">
+</p>
+
+Tracking the ISS on a ClockworkPi PicoCalc: sky plot, live telemetry, the
+selected pass's peak (`PEAK 38d @17:00`), an elevation-vs-time chart, and the
+upcoming pass list.
+
 ## Install
 `sgp4lite` is embedded inside `LazySatTrack.py`, so it is a single-file app —
 copy just these two onto your SD card (same place as FlipSocial.py etc.):
