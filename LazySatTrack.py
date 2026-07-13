@@ -926,8 +926,8 @@ def _draw_track(vm):
             if sp["aos"] <= f <= sp["los"]:              # 'you are here' on the curve
                 nx = bx + int((f - sp["aos"]) / (sp["los"] - sp["aos"]) * bw)
                 _LN(d, nx, bty, nx, bby, _col["cyan"])
-            _T(d, bx, bby + 2, _hm(sp["aos"], TZ), _col["dim"])
-            _T(d, bx + bw - 4 * (_fs.x if _fs else 8), bby + 2, _hm(sp["los"], TZ), _col["dim"])
+            _T(d, bx, bby + 2, _hm(sp["aos"], TZ), _col["grid"])
+            _T(d, bx + bw - 4 * (_fs.x if _fs else 8), bby + 2, _hm(sp["los"], TZ), _col["grid"])
 
     # pass list
     _LN(d, 0, yb, 319, yb, _col["dim"])
