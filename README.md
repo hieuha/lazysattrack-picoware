@@ -16,10 +16,11 @@ apps are listed under `Applications`; there is no top-level `LazySatTrack` entry
 in the Library menu.
 
 Use the source `.py` — it runs directly and avoids version issues. A precompiled
-`.mpy` only loads if it matches your firmware's exact MicroPython/mpy version;
-a mismatch shows `Could not load application "LazySatTrack"`. If you want `.mpy`,
-recompile it yourself with the `mpy-cross` that matches your Picoware build, and
-delete any stale `.mpy` from the card first.
+`.mpy` is provided at `build/LazySatTrack.mpy`, but it only loads if it matches
+your firmware's exact MicroPython/mpy version; a mismatch shows
+`Could not load application "LazySatTrack"`. If it doesn't load, recompile it
+yourself with the `mpy-cross` that matches your Picoware build (`mpy-cross
+LazySatTrack.py -o build/LazySatTrack.mpy`) and delete any stale `.mpy` from the card first.
 
 `tles.txt` here is a 2021-epoch sample so you can try it immediately; replace with
 fresh elements from CelesTrak for real predictions (the app flags TLE age in red

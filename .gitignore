@@ -72,6 +72,10 @@ release-manifest.json
 # Python bytecode
 __pycache__/
 *.py[cod]
+
+# build/ is ignored above, but keep the distributable compiled app
+!build/
+!build/LazySatTrack.mpy
 plans/**/*
 !plans/templates/*
 screenshots/*
